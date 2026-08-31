@@ -14,16 +14,35 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private InputActionReference moveAction;
     [SerializeField] private InputActionReference jumpAction;
     [SerializeField] private InputActionReference lookAction;
+    [SerializeField] private InputActionReference interactAction;
+
     [SerializeField] private CharacterController characterController;
     [SerializeField] private Transform cameraTransform;
+    [SerializeField] private Transform handTransform;
+    [SerializeField] private LayerMask whatIsStock;
+    [SerializeField] private float interactionRange = 5f;
+    [SerializeField] private GameObject holdPickup;
 
     private float ySpeed;
     private float cameraVerticalRotation;
 
+    private GameObject heldObject;
+
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
     private void Update()
     {
+        HandleLook();
+        HandleMovement();
+    }
+
+    private void HandleLook()
+    {
         Vector2 lookInput = lookAction.action.ReadValue<Vector2>();
-        Vector2 moveInput = moveAction.action.ReadValue<Vector2>();
 
         float horizontalLook = lookInput.x * lookSpeed * Time.deltaTime;
         float verticalLook = lookInput.y * lookSpeed * Time.deltaTime;
@@ -31,6 +50,7 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(0f, horizontalLook, 0f);
 
         cameraVerticalRotation -= verticalLook;
+
         cameraVerticalRotation = Mathf.Clamp(
             cameraVerticalRotation,
             minCameraAngle,
@@ -39,6 +59,11 @@ public class PlayerController : MonoBehaviour
 
         cameraTransform.localRotation =
             Quaternion.Euler(cameraVerticalRotation, 0f, 0f);
+    }
+
+    private void HandleMovement()
+    {
+        Vector2 moveInput = moveAction.action.ReadValue<Vector2>();
 
         Vector3 forward = cameraTransform.forward;
         Vector3 right = cameraTransform.right;
@@ -74,5 +99,18 @@ public class PlayerController : MonoBehaviour
         moveAmount.y = ySpeed;
 
         characterController.Move(moveAmount * Time.deltaTime);
+
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(.5f, .5f, 0f));
+        RaycastHit hit;
+
+
+        if(Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            if (Physics.Raycast(ray, out hit, interactionRange, whatIsStock))
+            {
+                Debug.Log("I see a pickup!");
+            }
+        }
     }
+
 }
