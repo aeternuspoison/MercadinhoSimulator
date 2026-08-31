@@ -1,0 +1,4 @@
+repository "MercadinhoSimulator/MercadinhoSimulator@4673049557261@cloud"
+  path "/"
+    br "/main"
+    co "/main"

@@ -1,0 +1,99 @@
+# =========================
+# Unity
+# =========================
+
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+[Mm]emoryCaptures/
+[Rr]ecordings/
+
+# Asset import / cache
+/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*
+
+# Generated files
+/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*.bin*
+/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*.json
+
+# =========================
+# Unity Crash Reports
+# =========================
+
+sysinfo.txt
+*.stacktrace
+
+# =========================
+# Visual Studio / Rider
+# =========================
+
+.vs/
+.idea/
+.vscode/
+
+*.csproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# =========================
+# OS
+# =========================
+
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =========================
+# Build artifacts
+# =========================
+
+*.apk
+*.aab
+*.app
+*.exe
+*.dll
+*.unitypackage
+
+# =========================
+# Gradle
+# =========================
+
+.gradle/
+.gradle-cache/
+/[Bb]uilds/
+/[Bb]uild/
+
+# =========================
+# Android
+# =========================
+
+/[Aa]ssets/[Pp]lugins/Android/**/*.aar
+/[Aa]ssets/[Pp]lugins/Android/**/*.so
+
+# =========================
+# Package Manager
+# =========================
+
+/[Ll]ibrary/[Pp]ackage[Mm]anager/
+/[Pp]ackages/packages-lock.json
+
+# =========================
+# Temporary files
+# =========================
+
+*.tmp
+*.temp
+*.bak
+*.orig
