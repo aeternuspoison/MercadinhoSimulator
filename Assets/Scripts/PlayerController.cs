@@ -107,29 +107,33 @@ public class PlayerController : MonoBehaviour
         RaycastHit hit;
 
 
-        if(Mouse.current.leftButton.wasPressedThisFrame)
+        if(holdPickup == null)
         {
-            if (Physics.Raycast(ray, out hit, interactionRange, whatIsStock))
+            if (Mouse.current.leftButton.wasPressedThisFrame)
             {
-                Debug.Log("I see a pickup!");
-                holdPickup = hit.collider.gameObject;
-                holdPickup.transform.SetParent(holdPoint);
-                holdPickup.transform.localPosition = Vector3.zero;
-                holdPickup.transform.localRotation = quaternion.identity;
+                if (Physics.Raycast(ray, out hit, interactionRange, whatIsStock))
+                {
+                    Debug.Log("I see a pickup!");
+                    holdPickup = hit.collider.gameObject;
+                    holdPickup.transform.SetParent(holdPoint);
+                    holdPickup.transform.localPosition = Vector3.zero;
+                    holdPickup.transform.localRotation = quaternion.identity;
 
-                holdPickup.GetComponent<Rigidbody>().isKinematic = true;
+                    holdPickup.GetComponent<Rigidbody>().isKinematic = true;
+                }
             }
         }
-
-        if (Mouse.current.rightButton.wasPressedThisFrame)
+        else
         {
-            Rigidbody pickupRB = holdPickup.GetComponent<Rigidbody>();
-            pickupRB.isKinematic = false;
-            pickupRB.AddForce(Camera.main.transform.forward * throwForce, ForceMode.Impulse);
+            if (Mouse.current.rightButton.wasPressedThisFrame)
+            {
+                Rigidbody pickupRB = holdPickup.GetComponent<Rigidbody>();
+                pickupRB.isKinematic = false;
+                pickupRB.AddForce(Camera.main.transform.forward * throwForce, ForceMode.Impulse);
 
-            holdPickup.transform.SetParent(null);
-            holdPickup = null;
+                holdPickup.transform.SetParent(null);
+                holdPickup = null;
+            }
         }
     }
-
 }
