@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -22,6 +23,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask whatIsStock;
     [SerializeField] private float interactionRange = 5f;
     [SerializeField] private GameObject holdPickup;
+    [SerializeField] private Transform holdPoint;
+    [SerializeField] private float throwForce;
 
     private float ySpeed;
     private float cameraVerticalRotation;
@@ -109,7 +112,23 @@ public class PlayerController : MonoBehaviour
             if (Physics.Raycast(ray, out hit, interactionRange, whatIsStock))
             {
                 Debug.Log("I see a pickup!");
+                holdPickup = hit.collider.gameObject;
+                holdPickup.transform.SetParent(holdPoint);
+                holdPickup.transform.localPosition = Vector3.zero;
+                holdPickup.transform.localRotation = quaternion.identity;
+
+                holdPickup.GetComponent<Rigidbody>().isKinematic = true;
             }
+        }
+
+        if (Mouse.current.rightButton.wasPressedThisFrame)
+        {
+            Rigidbody pickupRB = holdPickup.GetComponent<Rigidbody>();
+            pickupRB.isKinematic = false;
+            pickupRB.AddForce(Camera.main.transform.forward * throwForce, ForceMode.Impulse);
+
+            holdPickup.transform.SetParent(null);
+            holdPickup = null;
         }
     }
 

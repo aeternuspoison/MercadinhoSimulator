@@ -119,28 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!64 &62494586
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8757042445624468287}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2228417370725966487, guid: 369fcbc9516848144919bf563c54002d, type: 3}
 --- !u!1 &299587236
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,8 +259,8 @@ Camera:
   m_GameObject: {fileID: 330585543}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -407,7 +385,7 @@ Transform:
   m_GameObject: {fileID: 366082045}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5200001, y: 0.302, z: 0.49200004}
+  m_LocalPosition: {x: -0.5, y: 0, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -718,6 +696,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   interactionRange: 5
+  holdPickup: {fileID: 0}
+  holdPoint: {fileID: 366082046}
+  throwForce: 5
 --- !u!143 &442806837
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1197,7 +1178,7 @@ Transform:
   m_GameObject: {fileID: 2051007776}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.33066, y: -2.21527, z: 2.86708}
+  m_LocalPosition: {x: 2.33066, y: -2.21527, z: 2.993}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1272,7 +1253,7 @@ Transform:
   m_GameObject: {fileID: 919132149515715614}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: -0.11, y: -1.199, z: 9.522}
+  m_LocalPosition: {x: -0.11, y: -1.28, z: 9.522}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1343,8 +1324,8 @@ GameObject:
   - component: {fileID: 543450653238156964}
   - component: {fileID: 3469287837155315969}
   - component: {fileID: 1711813855575352779}
-  - component: {fileID: 3469287837155315971}
-  - component: {fileID: 3469287837155315972}
+  - component: {fileID: 3469287837155315973}
+  - component: {fileID: 3469287837155315974}
   m_Layer: 6
   m_Name: caixa_de_som
   m_TagString: Untagged
@@ -1830,7 +1811,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132149515715614}
   m_Mesh: {fileID: 8314571269056883277, guid: 3cb854834bbf58a45a006c3ed745bd2e, type: 3}
---- !u!54 &3469287837155315971
+--- !u!54 &3469287837155315973
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1853,11 +1834,11 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &3469287837155315972
+--- !u!65 &3469287837155315974
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3072,7 +3053,6 @@ GameObject:
   - component: {fileID: 7129599248550179738}
   - component: {fileID: 8894691112629567321}
   - component: {fileID: 6745302439583287188}
-  - component: {fileID: 62494586}
   - component: {fileID: 8894691112629567322}
   m_Layer: 0
   m_Name: Cube.006
