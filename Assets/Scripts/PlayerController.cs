@@ -154,7 +154,6 @@ public class PlayerController : MonoBehaviour
 
                 holdPickup.rig.AddForce(Camera.main.transform.forward * throwForce, ForceMode.Impulse);
 
-
                 holdPickup.transform.SetParent(null);
                 holdPickup = null;
             }

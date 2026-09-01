@@ -2,18 +2,20 @@ using UnityEngine;
 
 public class StockObject : MonoBehaviour
 {
+     public StockInfo info;
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private bool isPlaced;
     [SerializeField] public Rigidbody rig;
 
-    private Vector3 originalScale;
+    private Vector3 originalWorldScale;
 
     private void Awake()
     {
         if (rig == null)
             rig = GetComponent<Rigidbody>();
 
-        originalScale = transform.lossyScale;
+        // Guarda o tamanho REAL do objeto no mundo
+        originalWorldScale = transform.lossyScale;
     }
 
     private void Update()
@@ -32,6 +34,8 @@ public class StockObject : MonoBehaviour
             Quaternion.identity,
             moveSpeed * Time.deltaTime
         );
+
+        KeepOriginalScale();
     }
 
     public void PickUp()
@@ -44,7 +48,17 @@ public class StockObject : MonoBehaviour
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
 
-        RestoreScale();
+        KeepOriginalScale();
+    }
+
+    public void Release()
+    {
+        isPlaced = false;
+
+        if (rig != null)
+            rig.isKinematic = false;
+
+        KeepOriginalScale();
     }
 
     public void MakePlace()
@@ -54,20 +68,33 @@ public class StockObject : MonoBehaviour
         if (rig != null)
             rig.isKinematic = true;
 
-        RestoreScale();
+        KeepOriginalScale();
     }
 
-    private void RestoreScale()
+    public void Throw()
     {
+        isPlaced = false;
+
+        if (rig != null)
+            rig.isKinematic = false;
+
+        KeepOriginalScale();
+    }
+
+    private void KeepOriginalScale()
+    {
+        if (transform.parent == null)
+        {
+            transform.localScale = originalWorldScale;
+            return;
+        }
+
+        Vector3 parentScale = transform.parent.lossyScale;
+
         transform.localScale = new Vector3(
-            originalScale.x / transform.parent.lossyScale.x,
-            originalScale.y / transform.parent.lossyScale.y,
-            originalScale.z / transform.parent.lossyScale.z
+            originalWorldScale.x / parentScale.x,
+            originalWorldScale.y / parentScale.y,
+            originalWorldScale.z / parentScale.z
         );
-    }
-
-    public void Release()
-    {
-
     }
 }
