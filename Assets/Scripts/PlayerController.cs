@@ -1,4 +1,3 @@
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,7 +5,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Variaveis Comuns")]
     [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float jumpForce = 5f;
+    [SerializeField] private float jumpForce = 5f  ;
     [SerializeField] private float lookSpeed = 120f;
     [SerializeField] private float minCameraAngle = -60f;
     [SerializeField] private float maxCameraAngle = 60f;
@@ -22,9 +21,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform handTransform;
     [SerializeField] private LayerMask whatIsStock;
     [SerializeField] private float interactionRange = 5f;
-    [SerializeField] private GameObject holdPickup;
+    [SerializeField] private StockObject holdPickup;
     [SerializeField] private Transform holdPoint;
     [SerializeField] private float throwForce;
+    [SerializeField] private LayerMask whatIsShelf;
 
     private float ySpeed;
     private float cameraVerticalRotation;
@@ -114,22 +114,46 @@ public class PlayerController : MonoBehaviour
                 if (Physics.Raycast(ray, out hit, interactionRange, whatIsStock))
                 {
                     Debug.Log("I see a pickup!");
-                    holdPickup = hit.collider.gameObject;
-                    holdPickup.transform.SetParent(holdPoint);
-                    holdPickup.transform.localPosition = Vector3.zero;
-                    holdPickup.transform.localRotation = quaternion.identity;
 
-                    holdPickup.GetComponent<Rigidbody>().isKinematic = true;
+                    //holdPickup = hit.collider.gameObject;
+                    //holdPickup.transform.SetParent(holdPoint);
+                    //holdPickup.transform.localPosition = Vector3.zero;
+                    //holdPickup.transform.localRotation = quaternion.identity;
+
+                    //holdPickup.GetComponent<Rigidbody>().isKinematic = true;
+
+                    holdPickup = hit.collider.GetComponent<StockObject>();
+                    holdPickup.transform.SetParent(holdPoint);
+                    holdPickup.PickUp();
+
                 }
             }
         }
         else
         {
+            if(Mouse.current.leftButton.wasPressedThisFrame)
+            {
+                if (Physics.Raycast(ray, out hit, interactionRange, whatIsShelf))
+                {
+                    Debug.Log("area de colocar os produtos");
+
+                    holdPickup.transform.SetParent(hit.transform);
+
+                    holdPickup.MakePlace();
+
+                    holdPickup = null;
+                }
+            }
+
             if (Mouse.current.rightButton.wasPressedThisFrame)
             {
-                Rigidbody pickupRB = holdPickup.GetComponent<Rigidbody>();
-                pickupRB.isKinematic = false;
-                pickupRB.AddForce(Camera.main.transform.forward * throwForce, ForceMode.Impulse);
+                //Rigidbody pickupRB = holdPickup.GetComponent<Rigidbody>();
+                //pickupRB.isKinematic = false;
+                
+                holdPickup.Release();
+
+                holdPickup.rig.AddForce(Camera.main.transform.forward * throwForce, ForceMode.Impulse);
+
 
                 holdPickup.transform.SetParent(null);
                 holdPickup = null;
