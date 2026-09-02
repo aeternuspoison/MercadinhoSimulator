@@ -6,10 +6,10 @@ public class StockObject : MonoBehaviour
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] public bool isPlaced;
     [SerializeField] public Rigidbody rig;
-
     [SerializeField] private Collider col;
 
     private Vector3 originalWorldScale;
+    private Vector3 targetLocalPosition;
 
     private void Awake()
     {
@@ -29,7 +29,7 @@ public class StockObject : MonoBehaviour
 
         transform.localPosition = Vector3.MoveTowards(
             transform.localPosition,
-            Vector3.zero,
+            targetLocalPosition,
             moveSpeed * Time.deltaTime
         );
 
@@ -42,44 +42,34 @@ public class StockObject : MonoBehaviour
         KeepOriginalScale();
     }
 
+    public void SetTargetLocalPosition(Vector3 localPos)
+    {
+        targetLocalPosition = localPos;
+    }
+
     public void PickUp()
     {
         isPlaced = false;
-
-        if (col != null)
-            col.enabled = true;
-
-        if (rig != null)
-            rig.isKinematic = true;
-
+        if (col != null) col.enabled = true;
+        if (rig != null) rig.isKinematic = true;
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
-
         KeepOriginalScale();
     }
 
     public void Release()
     {
         isPlaced = false;
-
-        if (col != null)
-            col.enabled = true;
-
-        if (rig != null)
-            rig.isKinematic = false;
-
+        if (col != null) col.enabled = true;
+        if (rig != null) rig.isKinematic = false;
         KeepOriginalScale();
     }
 
     public void MakePlaced()
     {
         isPlaced = true;
-
-        if (rig != null)
-            rig.isKinematic = true;
-
-        if (col != null)
-            col.enabled = false;
+        if (rig != null) rig.isKinematic = true;
+        if (col != null) col.enabled = false;
 
         KeepOriginalScale();
     }
@@ -87,13 +77,8 @@ public class StockObject : MonoBehaviour
     public void Throw()
     {
         isPlaced = false;
-
-        if (col != null)
-            col.enabled = true;
-
-        if (rig != null)
-            rig.isKinematic = false;
-
+        if (col != null) col.enabled = true;
+        if (rig != null) rig.isKinematic = false;
         KeepOriginalScale();
     }
 
@@ -104,9 +89,7 @@ public class StockObject : MonoBehaviour
             transform.localScale = originalWorldScale;
             return;
         }
-
         Vector3 parentScale = transform.parent.lossyScale;
-
         transform.localScale = new Vector3(
             originalWorldScale.x / parentScale.x,
             originalWorldScale.y / parentScale.y,
