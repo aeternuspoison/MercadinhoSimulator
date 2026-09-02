@@ -717,23 +717,23 @@ MonoBehaviour:
   lookSpeed: 10
   minCameraAngle: -60
   maxCameraAngle: 60
+  cameraTransform: {fileID: 330585546}
   moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   jumpAction: {fileID: -2099379676528639254, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   lookAction: {fileID: -5630151704836100654, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   interactAction: {fileID: 0}
   characterController: {fileID: 442806837}
-  cameraTransform: {fileID: 330585546}
   handTransform: {fileID: 366082046}
+  interactionRange: 5
   whatIsStock:
     serializedVersion: 2
     m_Bits: 64
-  interactionRange: 5
-  holdPickup: {fileID: 0}
-  holdPoint: {fileID: 366082046}
-  throwForce: 5
   whatIsShelf:
     serializedVersion: 2
     m_Bits: 128
+  holdPickup: {fileID: 0}
+  holdPoint: {fileID: 366082046}
+  throwForce: 5
 --- !u!143 &442806837
 CharacterController:
   m_ObjectHideFlags: 0
@@ -835,6 +835,7 @@ GameObject:
   m_Component:
   - component: {fileID: 634165138}
   - component: {fileID: 634165139}
+  - component: {fileID: 634165140}
   m_Layer: 7
   m_Name: Shelf Space 1
   m_TagString: Untagged
@@ -851,8 +852,8 @@ Transform:
   m_GameObject: {fileID: 634165137}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0.603, y: 1.288, z: 2.932}
-  m_LocalScale: {x: 1, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: -0.603, y: 1.267, z: 2.932}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1740657239}
@@ -876,8 +877,24 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.5, y: 1, z: 1}
-  m_Center: {x: 0, y: 0.55851996, z: 0.031086266}
+  m_Size: {x: 2.5, y: 0.5, z: 0.5}
+  m_Center: {x: 0, y: 0.29, z: 0.031086266}
+--- !u!114 &634165140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634165137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09dc0d64c42fd2443b46664f2ddd5d54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShelfSpaceController
+  info:
+    Name: 
+    typeOfStock: 0
+  amountOnShelf: 0
 --- !u!1 &717316587
 GameObject:
   m_ObjectHideFlags: 0
@@ -888,6 +905,7 @@ GameObject:
   m_Component:
   - component: {fileID: 717316588}
   - component: {fileID: 717316589}
+  - component: {fileID: 717316590}
   m_Layer: 7
   m_Name: Shelf Space 3
   m_TagString: Untagged
@@ -904,8 +922,8 @@ Transform:
   m_GameObject: {fileID: 717316587}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0.603, y: 0.093, z: 2.932}
-  m_LocalScale: {x: 1, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: -0.603, y: 0.049, z: 2.932}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1740657239}
@@ -929,8 +947,24 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.5, y: 1, z: 1}
-  m_Center: {x: 0, y: 0.55851996, z: 0.031086266}
+  m_Size: {x: 2.5, y: 0.5, z: 0.5}
+  m_Center: {x: 0, y: 0.32, z: 0.031086266}
+--- !u!114 &717316590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717316587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09dc0d64c42fd2443b46664f2ddd5d54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShelfSpaceController
+  info:
+    Name: 
+    typeOfStock: 0
+  amountOnShelf: 0
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1291,6 +1325,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1678575814}
   - component: {fileID: 1678575815}
+  - component: {fileID: 1678575816}
   m_Layer: 7
   m_Name: Shelf Space 2
   m_TagString: Untagged
@@ -1307,8 +1342,8 @@ Transform:
   m_GameObject: {fileID: 1678575813}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0.603, y: 0.68, z: 2.932}
-  m_LocalScale: {x: 1, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: -0.603, y: 0.695, z: 2.932}
+  m_LocalScale: {x: 1, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1740657239}
@@ -1332,8 +1367,24 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.5, y: 1, z: 1}
-  m_Center: {x: 0, y: 0.55851996, z: 0.031086266}
+  m_Size: {x: 2.5, y: 0.5, z: 1}
+  m_Center: {x: 0, y: 0.25, z: 0.031086266}
+--- !u!114 &1678575816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678575813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09dc0d64c42fd2443b46664f2ddd5d54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShelfSpaceController
+  info:
+    Name: 
+    typeOfStock: 0
+  amountOnShelf: 0
 --- !u!1 &1740657238
 GameObject:
   m_ObjectHideFlags: 0
@@ -2310,9 +2361,10 @@ MonoBehaviour:
   info:
     Name: Leite Pirarucuba
     typeOfStock: 0
-  moveSpeed: 5
+  moveSpeed: 10
   isPlaced: 0
   rig: {fileID: 3469287837398225379}
+  col: {fileID: 0}
 --- !u!1 &3655000509796929115
 GameObject:
   m_ObjectHideFlags: 0
@@ -2533,6 +2585,14 @@ Transform:
   m_Children: []
   m_Father: {fileID: 543450652863834032}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &5678406817027791664
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8226330305756548655}
+  m_Mesh: {fileID: -8670151273213183110, guid: f412de4d579f1bd499ce0cbd90c6dd8f, type: 3}
 --- !u!4 &5680519943678869602
 Transform:
   m_ObjectHideFlags: 0
@@ -2869,6 +2929,55 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!23 &7577649024619638778
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8226330305756548655}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 8584091055713041540, guid: f412de4d579f1bd499ce0cbd90c6dd8f, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &7623545440323710116
 GameObject:
   m_ObjectHideFlags: 0
@@ -3051,6 +3160,27 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &8226330305756548655
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8746583660277666965}
+  - component: {fileID: 5678406817027791664}
+  - component: {fileID: 7577649024619638778}
+  - component: {fileID: 8746583660277666967}
+  - component: {fileID: 8746583660277666966}
+  - component: {fileID: 8746583660277666968}
+  m_Layer: 6
+  m_Name: SucoDeMelancia
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!33 &8401952775669092633
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3496,6 +3626,88 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4493585093827132993, guid: 369fcbc9516848144919bf563c54002d, type: 3}
+--- !u!4 &8746583660277666965
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8226330305756548655}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.925, y: -2.68273, z: 4.60578}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8746583660277666966
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8226330305756548655}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.25, y: 0.3404506, z: 0.25}
+  m_Center: {x: 0, y: 0.1702253, z: 0}
+--- !u!54 &8746583660277666967
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8226330305756548655}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &8746583660277666968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8226330305756548655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 579ba87ea806a4b4998d0e4ecfa7bfe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StockObject
+  info:
+    Name: Suquinho de Melancia
+    typeOfStock: 2
+  moveSpeed: 10
+  isPlaced: 0
+  rig: {fileID: 8746583660277666967}
+  col: {fileID: 0}
 --- !u!1 &8757042445624468287
 GameObject:
   m_ObjectHideFlags: 0
@@ -3659,3 +3871,4 @@ SceneRoots:
   - {fileID: 2051007777}
   - {fileID: 1740657239}
   - {fileID: 543450653548830279}
+  - {fileID: 8746583660277666965}

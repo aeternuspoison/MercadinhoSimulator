@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class StockObject : MonoBehaviour
 {
-     public StockInfo info;
+    public StockInfo info;
     [SerializeField] private float moveSpeed = 10f;
-    [SerializeField] private bool isPlaced;
+    [SerializeField] public bool isPlaced;
     [SerializeField] public Rigidbody rig;
+
+    [SerializeField] private Collider col;
 
     private Vector3 originalWorldScale;
 
@@ -14,7 +16,9 @@ public class StockObject : MonoBehaviour
         if (rig == null)
             rig = GetComponent<Rigidbody>();
 
-        // Guarda o tamanho REAL do objeto no mundo
+        if (col == null)
+            col = GetComponent<Collider>();
+
         originalWorldScale = transform.lossyScale;
     }
 
@@ -42,6 +46,9 @@ public class StockObject : MonoBehaviour
     {
         isPlaced = false;
 
+        if (col != null)
+            col.enabled = true;
+
         if (rig != null)
             rig.isKinematic = true;
 
@@ -55,18 +62,24 @@ public class StockObject : MonoBehaviour
     {
         isPlaced = false;
 
+        if (col != null)
+            col.enabled = true;
+
         if (rig != null)
             rig.isKinematic = false;
 
         KeepOriginalScale();
     }
 
-    public void MakePlace()
+    public void MakePlaced()
     {
         isPlaced = true;
 
         if (rig != null)
             rig.isKinematic = true;
+
+        if (col != null)
+            col.enabled = false;
 
         KeepOriginalScale();
     }
@@ -74,6 +87,9 @@ public class StockObject : MonoBehaviour
     public void Throw()
     {
         isPlaced = false;
+
+        if (col != null)
+            col.enabled = true;
 
         if (rig != null)
             rig.isKinematic = false;
