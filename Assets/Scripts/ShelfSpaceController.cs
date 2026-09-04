@@ -5,8 +5,8 @@ public class ShelfSpaceController : MonoBehaviour
     public StockInfo info;
     public int amountOnShelf;
 
-    [SerializeField] private float itemSpacingX = 0.4f;
-    [SerializeField] private float itemSpacingZ = 0.4f;
+    [SerializeField] private float itemSpacingX = 0.05f;
+    [SerializeField] private float itemSpacingZ = 0.05f;
 
     private BoxCollider shelfCollider;
 

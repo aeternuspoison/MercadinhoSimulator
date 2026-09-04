@@ -202,6 +202,7 @@ public class PlayerController : MonoBehaviour
         if (!Mouse.current.rightButton.wasPressedThisFrame)
             return;
 
+
         StockObject stock = holdPickup;
 
         stock.transform.SetParent(null, true);
